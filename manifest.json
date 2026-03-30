@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Gmail Thread Notes",
+  "version": "1.0.0",
+  "description": "Add private notes to Gmail threads. Notes appear above the subject line and sync across devices.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Gmail Thread Notes"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/note-16.png",
+    "48": "icons/note-48.png",
+    "128": "icons/note-128.png"
+  }
+}

@@ -1,0 +1,234 @@
+/* --- Note panel --- */
+.gtn-panel {
+  background: #fef9e7;
+  border: 1px solid #f0d861;
+  border-radius: 8px;
+  margin: 8px 0 12px 0;
+  padding: 0;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gtn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0d861;
+  background: #fdf4cd;
+  border-radius: 8px 8px 0 0;
+}
+
+.gtn-label {
+  font-weight: 500;
+  color: #5a4e00;
+  font-size: 13px;
+}
+
+.gtn-actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* --- Buttons --- */
+.gtn-btn {
+  background: none;
+  border: 1px solid #d4c14a;
+  color: #5a4e00;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.gtn-btn:hover {
+  background: #f5e88a;
+}
+
+.gtn-btn-save {
+  background: #4285f4;
+  color: white;
+  border-color: #3367d6;
+}
+
+.gtn-btn-save:hover {
+  background: #3367d6;
+}
+
+.gtn-btn-delete {
+  color: #c53929;
+  border-color: #e0c4c0;
+}
+
+.gtn-btn-delete:hover {
+  background: #fce8e6;
+}
+
+/* --- Note content --- */
+.gtn-content {
+  padding: 10px 14px;
+  color: #3c3c00;
+  word-wrap: break-word;
+}
+
+.gtn-content a {
+  color: #1a73e8;
+  text-decoration: underline;
+}
+
+.gtn-content a:hover {
+  color: #174ea6;
+}
+
+.gtn-content strong {
+  font-weight: 600;
+}
+
+/* --- Editor --- */
+.gtn-editor {
+  padding: 10px 14px;
+}
+
+/* --- Color swatches --- */
+.gtn-theme-row {
+  display: flex;
+  gap: 7px;
+  margin: 8px 0;
+}
+
+.gtn-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.15s;
+}
+
+.gtn-swatch.gtn-swatch-active {
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1),
+              0 0 0 2.5px #fff,
+              0 0 0 4px #4285f4;
+}
+
+.gtn-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px 10px;
+  border: 1px solid #d4c14a;
+  border-radius: 6px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  background: #fffef5;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.gtn-textarea:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+.gtn-textarea::placeholder {
+  color: #999;
+}
+
+.gtn-btn-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Add note button --- */
+.gtn-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: 8px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  color: #5f6368;
+  transition: all 0.15s;
+  opacity: 0.5;
+  vertical-align: middle;
+}
+
+.gtn-add-btn span {
+  display: none;
+}
+
+.gtn-add-btn:hover {
+  opacity: 1;
+  background: #f1f3f4;
+  border-color: #dadce0;
+}
+
+.gtn-add-btn:hover span {
+  display: inline;
+}
+
+/* --- Dark mode support (Gmail dark theme) --- */
+@media (prefers-color-scheme: dark) {
+  .gtn-panel {
+    background: #2d2a1e;
+    border-color: #5c5320;
+  }
+
+  .gtn-header {
+    background: #3a351f;
+    border-color: #5c5320;
+  }
+
+  .gtn-label {
+    color: #e8d44d;
+  }
+
+  .gtn-content {
+    color: #e0dcc0;
+  }
+
+  .gtn-content a {
+    color: #8ab4f8;
+  }
+
+  .gtn-btn {
+    color: #e0dcc0;
+    border-color: #5c5320;
+  }
+
+  .gtn-btn:hover {
+    background: #4a4320;
+  }
+
+  .gtn-textarea {
+    background: #1e1c14;
+    color: #e0dcc0;
+    border-color: #5c5320;
+  }
+
+  .gtn-add-btn {
+    color: #bbb;
+  }
+
+  .gtn-add-btn:hover {
+    background: #333;
+    border-color: #555;
+  }
+}

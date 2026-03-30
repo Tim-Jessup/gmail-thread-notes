@@ -166,7 +166,6 @@
   font-size: 12px;
   color: #5f6368;
   transition: all 0.15s;
-  opacity: 0.5;
   vertical-align: middle;
 }
 
@@ -175,7 +174,6 @@
 }
 
 .gtn-add-btn:hover {
-  opacity: 1;
   background: #f1f3f4;
   border-color: #dadce0;
 }

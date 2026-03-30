@@ -85,7 +85,7 @@
 
     const label = document.createElement("span");
     label.className = "gtn-label";
-    label.innerHTML = `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#444746" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><rect x="3.5" y="1.5" width="13" height="17" rx="1.5"/><line x1="6.5" y1="7" x2="13.5" y2="7"/><line x1="6.5" y1="10.5" x2="13.5" y2="10.5"/><line x1="6.5" y1="14" x2="11" y2="14"/></svg>Note`;
+    label.innerHTML = `<svg width="20" height="20" viewBox="0 0 256 256" fill="#444746" xmlns="http://www.w3.org/2000/svg" style="vertical-align:-2px;margin-right:5px"><path d="M229.66,58.34l-32-32a8,8,0,0,0-11.32,0l-96,96A8,8,0,0,0,88,128v32a8,8,0,0,0,8,8h32a8,8,0,0,0,5.66-2.34l96-96A8,8,0,0,0,229.66,58.34ZM124.69,152H104V131.31l64-64L188.69,88ZM200,76.69,179.31,56,192,43.31,212.69,64ZM224,128v80a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h80a8,8,0,0,1,0,16H48V208H208V128a8,8,0,0,1,16,0Z"/></svg>Note`;
 
     const actions = document.createElement("span");
     actions.className = "gtn-actions";
@@ -129,6 +129,10 @@
     editBtn.addEventListener("click", () => {
       const isEditing = editor.style.display === "block";
       if (isEditing) {
+        if (!panel.dataset.gtnRawText) {
+          panel.remove();
+          return;
+        }
         editor.style.display = "none";
         content.style.display = "block";
         editBtn.textContent = "Edit";
@@ -263,7 +267,7 @@
     const btn = document.createElement("button");
     btn.className = "gtn-add-btn";
     btn.title = "Add a note to this thread";
-    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#444746" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="1.5" width="13" height="17" rx="1.5"/><line x1="6.5" y1="7" x2="13.5" y2="7"/><line x1="6.5" y1="10.5" x2="13.5" y2="10.5"/><line x1="6.5" y1="14" x2="11" y2="14"/></svg><span>Add note</span>`;
+    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 256 256" fill="#444746" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,58.34l-32-32a8,8,0,0,0-11.32,0l-96,96A8,8,0,0,0,88,128v32a8,8,0,0,0,8,8h32a8,8,0,0,0,5.66-2.34l96-96A8,8,0,0,0,229.66,58.34ZM124.69,152H104V131.31l64-64L188.69,88ZM200,76.69,179.31,56,192,43.31,212.69,64ZM224,128v80a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h80a8,8,0,0,1,0,16H48V208H208V128a8,8,0,0,1,16,0Z"/></svg><span>Add note</span>`;
     btn.dataset.gtnThreadId = threadId;
 
     btn.addEventListener("click", () => {

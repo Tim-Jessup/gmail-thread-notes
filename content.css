@@ -96,7 +96,8 @@
 .gtn-content {
   padding: 10px 14px;
   color: #3c3c00;
-  word-wrap: break-word;
+  overflow-wrap: break-word; /* Handles long URLs and CJK text */
+  word-break: break-word;
 }
 
 .gtn-content a {

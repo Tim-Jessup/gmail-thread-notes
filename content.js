@@ -146,6 +146,7 @@
 
     const content = document.createElement("div");
     content.className = "gtn-content";
+    content.setAttribute("dir", "auto"); // Auto-detect RTL vs LTR
     content.innerHTML = renderMarkdown(noteText);
 
     const editor = createEditor(threadId, noteText, noteTheme, panel, content, editBtn);
@@ -199,6 +200,7 @@
     textarea.className = "gtn-textarea";
     textarea.value = initialText || "";
     textarea.placeholder = "Write your note here...\n\n**bold**, *italic*, [link text](https://...)";
+    textarea.setAttribute("dir", "auto"); // Auto-detect RTL vs LTR per paragraph
     textarea.rows = 5;
 
     // Color theme swatches — clicking one updates the panel immediately as a preview.

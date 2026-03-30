@@ -1,6 +1,18 @@
-/* --- Note panel --- */
+/* Gmail Thread Notes - content stylesheet
+ *
+ * All class names are prefixed "gtn-" to avoid clashing with Gmail's styles.
+ *
+ * Color theming: base colors below are the yellow default. At runtime,
+ * content.js injects .gtn-theme-{name} rules that override these for each
+ * theme. Dark mode overrides are at the bottom of this file.
+ */
+
+/* -------------------------------------------------------------------------
+   Note panel
+   ------------------------------------------------------------------------- */
+
 .gtn-panel {
-  background: #fef9e7;
+  background: #fef9e7;       /* Default (yellow); overridden by .gtn-theme-* */
   border: 1px solid #f0d861;
   border-radius: 8px;
   margin: 8px 0 12px 0;
@@ -24,6 +36,8 @@
 }
 
 .gtn-label {
+  display: flex;
+  align-items: center;
   font-weight: 500;
   color: #5a4e00;
   font-size: 13px;
@@ -34,7 +48,12 @@
   gap: 4px;
 }
 
-/* --- Buttons --- */
+/* -------------------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------------------- */
+
+/* Base style for header buttons (Edit, Hide/Show).
+   Save and Delete override color properties below. */
 .gtn-btn {
   background: none;
   border: 1px solid #d4c14a;
@@ -70,7 +89,10 @@
   background: #fce8e6;
 }
 
-/* --- Note content --- */
+/* -------------------------------------------------------------------------
+   Note content (rendered markdown view)
+   ------------------------------------------------------------------------- */
+
 .gtn-content {
   padding: 10px 14px;
   color: #3c3c00;
@@ -90,33 +112,12 @@
   font-weight: 600;
 }
 
-/* --- Editor --- */
+/* -------------------------------------------------------------------------
+   Editor
+   ------------------------------------------------------------------------- */
+
 .gtn-editor {
   padding: 10px 14px;
-}
-
-/* --- Color swatches --- */
-.gtn-theme-row {
-  display: flex;
-  gap: 7px;
-  margin: 8px 0;
-}
-
-.gtn-swatch {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1.5px solid;
-  padding: 0;
-  cursor: pointer;
-  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.15s;
-}
-
-.gtn-swatch.gtn-swatch-active {
-  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1),
-              0 0 0 2.5px #fff,
-              0 0 0 4px #4285f4;
 }
 
 .gtn-textarea {
@@ -144,13 +145,42 @@
   color: #999;
 }
 
+/* Color theme swatches */
+.gtn-theme-row {
+  display: flex;
+  gap: 7px;
+  margin: 8px 0;
+}
+
+.gtn-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.15s;
+}
+
+/* Active swatch: white gap + blue ring */
+.gtn-swatch.gtn-swatch-active {
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1),
+              0 0 0 2.5px #fff,
+              0 0 0 4px #4285f4;
+}
+
 .gtn-btn-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* --- Add note button --- */
+/* -------------------------------------------------------------------------
+   Add note button (shown in the subject row when no note exists)
+   ------------------------------------------------------------------------- */
+
+/* Flows inline after the thread labels. "Add note" text is hidden until hover. */
 .gtn-add-btn {
   display: inline-flex;
   align-items: center;
@@ -182,7 +212,11 @@
   display: inline;
 }
 
-/* --- Dark mode support (Gmail dark theme) --- */
+/* -------------------------------------------------------------------------
+   Dark mode (Gmail dark theme)
+   Only applies the yellow/default panel colors; per-theme overrides from
+   content.js are scoped to prefers-color-scheme: light and don't apply here.
+   ------------------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
   .gtn-panel {
     background: #2d2a1e;

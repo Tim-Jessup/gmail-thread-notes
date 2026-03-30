@@ -1,3 +1,7 @@
+// Gmail Thread Notes - popup script
+// Lists all saved notes with subject and preview, and allows deletion.
+
+// Subset of theme colors needed for the dot indicators.
 const THEMES = {
   yellow:   { bg: "#fef9e7", border: "#e8c84a" },
   blue:     { bg: "#e8f0fe", border: "#93b6f5" },
@@ -7,9 +11,14 @@ const THEMES = {
   neutral:  { bg: "#f8f9fa", border: "#dadce0" },
 };
 
+// Returns the first line of a note with markdown syntax stripped,
+// for use as a one-line preview in the list.
 function getPreview(text) {
   const firstLine = (text || "").split("\n")[0] || "";
-  return firstLine.replace(/\*\*?|__|`/g, "").trim();
+  return firstLine
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // [text](url) → text
+    .replace(/\*\*?|__|`/g, "")              // **bold**, *italic*, `code`
+    .trim();
 }
 
 function updateCount(n) {
@@ -17,12 +26,14 @@ function updateCount(n) {
 }
 
 async function render() {
+  // Load everything from storage; notes are the entries prefixed "note:".
   const items = await new Promise((resolve) => chrome.storage.sync.get(null, resolve));
 
   const notes = Object.entries(items)
     .filter(([key]) => key.startsWith("note:"))
     .map(([key, value]) => ({
       key,
+      // Backward compatibility: old notes were plain strings.
       ...(typeof value === "string" ? { text: value, theme: "yellow", subject: "" } : value),
     }))
     .sort((a, b) => (a.subject || "").localeCompare(b.subject || ""));
@@ -41,6 +52,7 @@ async function render() {
     const item = document.createElement("div");
     item.className = "note-item";
 
+    // Colored dot reflects the note's theme.
     const dot = document.createElement("div");
     dot.className = "dot";
     dot.style.background = theme.bg;
@@ -51,6 +63,7 @@ async function render() {
 
     const subject = document.createElement("div");
     subject.className = "subject";
+    // Fall back to the raw thread ID if no subject was captured yet.
     subject.textContent = note.subject || note.key.slice(5);
 
     const preview = document.createElement("div");
